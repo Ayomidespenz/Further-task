@@ -1,25 +1,29 @@
+
+
+
+    document.addEventListener('DOMContentLoaded', () => {
         // Initial librarian credentials
         const initialLibrarian = { username: "librarian", password: "admin123" };
-
-        //Fallback book data
+    
+        // Fallback book data
         const fallbackBooks = [
-            { id: 1, title: "Things Fall Apart", author: "Chinua Achebe", genre: "Fiction", status: "Available", coverImage: "/image-folder/thingsFall.jpeg", borrowCount: 0 },
-            { id: 2, title: "Half of a Yellow Sun", author: "Chimamanda Ngozi Adichie", genre: "Historical Fiction", status: "Available", coverImage: "/image-folder/halfOfaYellow.jpeg", borrowCount: 0 },
-            { id: 3, title: "Americanah", author: "Chimamanda Ngozi Adichie", genre: "Fiction", status: "Available", coverImage: "/image-folder/americanah.jpeg", borrowCount: 0 },
-            { id: 4, title: "Purple Hibiscus", author: "Chimamanda Ngozi Adichie", genre: "Fiction", status: "Available", coverImage: "/image-folder/purpleHibiscus.jpeg", borrowCount: 0 },
-            { id: 5, title: "So Long a Letter", author: "Mariama Bâ", genre: "Epistolary Novel", status: "Available", coverImage: "/image-folder/soLong.jpeg", borrowCount: 0 },
-            { id: 6, title: "A Long Way Gone: Memoirs of a Boy Soldier", author: "Ishmael Beah", genre: "Autobiography", status: "Available", coverImage: "/image-folder/aLongWay.jpeg", borrowCount: 0 },
-            { id: 7, title: "The Secret Lives of Baba Segi's Wives", author: "Lola Shoneyin", genre: "Fiction", status: "Available", coverImage: "/image-folder/secretlife.jpeg", borrowCount: 0 },
-            { id: 8, title: "Nervous Conditions", author: "Tsitsi Dangarembga", genre: "Fiction", status: "Available", coverImage: "/image-folder/nervouscondition.jpeg", borrowCount: 0 },
-            { id: 9, title: "Disgrace", author: "J.M. Coetzee", genre: "Fiction", status: "Available", coverImage: "/image-folder/disgrace.jpeg", borrowCount: 0 },
-            { id: 10, title: "No Longer at Ease", author: "Chinua Achebe", genre: "Fiction", status: "Available", coverImage: "/image-folder/noLong.jpeg", borrowCount: 0 },
-            { id: 11, title: "Homegoing", author: "Yaa Gyasi", genre: "Historical Fiction", status: "Available", coverImage: "/image-folder/homegoing.jpeg", borrowCount: 0 },
-            { id: 12, title: "Season of Migration to the North", author: "Tayeb Salih", genre: "Fiction", status: "Available", coverImage: "/image-folder/seasonmigration.jpeg", borrowCount: 0 },
-            { id: 13, title: "The Famished Road", author: "Ben Okri", genre: "Magical Realism", status: "Available", coverImage: "/image-folder/theroad.jpeg", borrowCount: 0 },
-            { id: 14, title: "Cry, the Beloved Country", author: "Alan Paton", genre: "Fiction", status: "Available", coverImage: "/image-folder/crycountry.jpeg", borrowCount: 0 },
-            { id: 15, title: "Kintu", author: "Jennifer Nansubuga Makumbi", genre: "Historical Fiction", status: "Available", coverImage: "/image-folder/kintu.jpeg", borrowCount: 0 }
+            { id: 1, title: "Things Fall Apart", author: "Chinua Achebe", genre: "Fiction", availability: "Available", cover_image: "/image-folder/thingsFall.jpeg", borrowCount: 0 },
+            { id: 2, title: "Half of a Yellow Sun", author: "Chimamanda Ngozi Adichie", genre: "Historical Fiction", availability: "Available", cover_image: "/image-folder/halfOfaYellow.jpeg", borrowCount: 0 },
+            { id: 3, title: "Americanah", author: "Chimamanda Ngozi Adichie", genre: "Fiction", availability: "Available", cover_image: "/image-folder/americanah.jpeg", borrowCount: 0 },
+            { id: 4, title: "Purple Hibiscus", author: "Chimamanda Ngozi Adichie", genre: "Fiction", availability: "Available", cover_image: "/image-folder/purpleHibiscus.jpeg", borrowCount: 0 },
+            { id: 5, title: "So Long a Letter", author: "Mariama Bâ", genre: "Epistolary Novel", availability: "Available", cover_image: "/image-folder/soLong.jpeg", borrowCount: 0 },
+            { id: 6, title: "A Long Way Gone: Memoirs of a Boy Soldier", author: "Ishmael Beah", genre: "Autobiography", availability: "Available", cover_image: "/image-folder/aLongWay.jpeg", borrowCount: 0 },
+            { id: 7, title: "The Secret Lives of Baba Segi's Wives", author: "Lola Shoneyin", genre: "Fiction", availability: "Available", cover_image: "/image-folder/secretlife.jpeg", borrowCount: 0 },
+            { id: 8, title: "Nervous Conditions", author: "Tsitsi Dangarembga", genre: "Fiction", availability: "Available", cover_image: "/image-folder/nervouscondition.jpeg", borrowCount: 0 },
+            { id: 9, title: "Disgrace", author: "J.M. Coetzee", genre: "Fiction", availability: "Available", cover_image: "/image-folder/disgrace.jpeg", borrowCount: 0 },
+            { id: 10, title: "No Longer at Ease", author: "Chinua Achebe", genre: "Fiction", availability: "Available", cover_image: "/image-folder/noLong.jpeg", borrowCount: 0 },
+            { id: 11, title: "Homegoing", author: "Yaa Gyasi", genre: "Historical Fiction", availability: "Available", cover_image: "/image-folder/homegoing.jpeg", borrowCount: 0 },
+            { id: 12, title: "Season of Migration to the North", author: "Tayeb Salih", genre: "Fiction", availability: "Available", cover_image: "/image-folder/seasonmigration.jpeg", borrowCount: 0 },
+            { id: 13, title: "The Famished Road", author: "Ben Okri", genre: "Magical Realism", availability: "Available", cover_image: "/image-folder/theroad.jpeg", borrowCount: 0 },
+            { id: 14, title: "Cry, the Beloved Country", author: "Alan Paton", genre: "Fiction", availability: "Available", cover_image: "/image-folder/crycountry.jpeg", borrowCount: 0 },
+            { id: 15, title: "Kintu", author: "Jennifer Nansubuga Makumbi", genre: "Historical Fiction", availability: "Available", cover_image: "/image-folder/kintu.jpeg", borrowCount: 0 }
         ];
-
+    
         // State variables
         let books = null;
         let borrowingHistory = [];
@@ -28,7 +32,7 @@
         let librarian = initialLibrarian;
         let currentUser = null;
         let genreChart = null;
-
+    
         // Load data from localStorage with error handling
         function loadStorage() {
             try {
@@ -46,20 +50,17 @@
                 librarian = initialLibrarian;
             }
         }
-
+    
         // Fetch books from data.json using async/await
         async function fetchBooks() {
             try {
                 const response = await fetch('/data.json');
-                console.log(response);
-                
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 const data = await response.json();
-                console.log(data)
                 return data.books.map(book => ({
                     ...book,
                     borrowCount: 0,
-                    coverImage: book.coverImage,
+                    cover_image: book.cover_image,
                 }));
             } catch (error) {
                 console.error('Error fetching books:', error);
@@ -67,7 +68,7 @@
                 return fallbackBooks;
             }
         }
-
+    
         // Initialize books
         async function initializeBooks() {
             document.getElementById('loading-message').classList.remove('d-none');
@@ -78,7 +79,7 @@
             document.getElementById('loading-message').classList.add('d-none');
             populateGenreFilter();
         }
-
+    
         // Save data to localStorage
         function saveData() {
             try {
@@ -92,7 +93,12 @@
                 alert('Failed to save data. Some changes may not persist.');
             }
         }
-
+    
+        // Get current user
+        function getCurrentUser() {
+            return currentUser ? { ...currentUser } : null;
+        }
+    
         // Populate genre filter dynamically
         function populateGenreFilter() {
             const genreFilter = document.getElementById('genre-filter');
@@ -102,7 +108,7 @@
                 genreFilter.innerHTML += `<option value="${genre}">${genre}</option>`;
             });
         }
-
+    
         // Authentication
         function loginUser(username, password) {
             const user = users.find(u => u.username === username && u.password === password);
@@ -115,7 +121,7 @@
                 document.getElementById('user-login-message').innerHTML = '<div class="alert alert-danger">Invalid username or password!</div>';
             }
         }
-
+    
         function loginLibrarian(username, password) {
             if (librarian.username === username && librarian.password === password) {
                 currentUser = { username: 'librarian', role: 'librarian' };
@@ -126,7 +132,7 @@
                 document.getElementById('librarian-login-message').innerHTML = '<div class="alert alert-danger">Invalid username or password!</div>';
             }
         }
-
+    
         function registerUser(username, password) {
             if (!username || !password) {
                 document.getElementById('user-login-message').innerHTML = '<div class="alert alert-danger">Please fill in both fields!</div>';
@@ -141,7 +147,7 @@
                 document.getElementById('user-login-form').reset();
             }
         }
-
+    
         // Show appropriate dashboard
         function showUserDashboard() {
             document.getElementById('landing-page').classList.add('d-none');
@@ -157,7 +163,7 @@
             displayHistory();
             displayWishlist();
         }
-
+    
         function showLibrarianDashboard() {
             document.getElementById('landing-page').classList.add('d-none');
             document.getElementById('main-app').classList.remove('d-none');
@@ -173,7 +179,7 @@
             updateDashboard();
             displayActivities();
         }
-
+    
         // User Login Form
         document.getElementById('user-login-form').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -181,14 +187,14 @@
             const password = document.getElementById('user-password').value;
             loginUser(username, password);
         });
-
+    
         // User Register
         document.getElementById('user-register-btn').addEventListener('click', () => {
             const username = document.getElementById('user-username').value.trim();
             const password = document.getElementById('user-password').value;
             registerUser(username, password);
         });
-
+    
         // Librarian Login Form
         document.getElementById('librarian-login-form').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -196,7 +202,7 @@
             const password = document.getElementById('librarian-password').value;
             loginLibrarian(username, password);
         });
-
+    
         // Logout
         document.getElementById('logout-btn').addEventListener('click', () => {
             currentUser = null;
@@ -207,7 +213,7 @@
             document.getElementById('user-login-message').innerHTML = '';
             document.getElementById('librarian-login-message').innerHTML = '';
         });
-
+    
         // Display books in catalog with event delegation
         function displayBooks() {
             const catalog = document.getElementById('book-catalog');
@@ -215,24 +221,27 @@
             const search = document.getElementById('search-input').value.toLowerCase();
             const genre = document.getElementById('genre-filter').value;
             const availability = document.getElementById('availability-filter').value;
-
+    
             books.forEach(book => {
                 if (
                     (book.title.toLowerCase().includes(search) || book.author.toLowerCase().includes(search)) &&
                     (!genre || book.genre === genre) &&
-                    (!availability || book.status === availability)
+                    (!availability || book.availability === availability)
                 ) {
                     const card = `
                         <div class="col">
                             <div class="card book-card">
-                                <img src="${book.coverImage}" class="card-img-top cover-img" alt="${book.title}">
+                                <img src="${book.cover_image}" class="card-img-top cover-img" alt="${book.title}">
                                 <div class="card-body">
                                     <h5 class="card-title">${book.title}</h5>
                                     <p class="card-text">Author: ${book.author}</p>
                                     <p class="card-text">Genre: ${book.genre}</p>
-                                    <p class="card-text">Status: ${book.status}</p>
+                                    <p class="card-text">Status: ${book.availability}</p>
                                     <button class="btn btn-sm btn-outline-primary wishlist-btn" data-id="${book.id}">
                                         <i class="fas fa-heart"></i> Add to Wishlist
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success borrow-btn" data-id="${book.id}" ${book.availability !== 'Available' || !currentUser ? 'disabled' : ''}>
+                                        <i class="fas fa-book"></i> Borrow
                                     </button>
                                 </div>
                             </div>
@@ -241,13 +250,19 @@
                     catalog.innerHTML += card;
                 }
             });
-
-            // Event delegation for wishlist buttons
+    
+            // Event delegation for wishlist and borrow buttons
             catalog.addEventListener('click', (e) => {
-                if (e.target.closest('.wishlist-btn')) {
-                    const btn = e.target.closest('.wishlist-btn');
-                    const bookId = parseInt(btn.dataset.id);
+                const wishlistBtn = e.target.closest('.wishlist-btn');
+                const borrowBtn = e.target.closest('.borrow-btn');
+    
+                if (wishlistBtn) {
+                    const bookId = parseInt(wishlistBtn.dataset.id);
                     const book = books.find(b => b.id === bookId);
+                    if (!currentUser) {
+                        alert('Please log in to add books to your wishlist!');
+                        return;
+                    }
                     if (!wishlist.find(w => w.id === bookId && w.username === currentUser.username)) {
                         wishlist.push({ ...book, username: currentUser.username });
                         saveData();
@@ -256,10 +271,37 @@
                     } else {
                         alert(`${book.title} is already in your wishlist!`);
                     }
+                } else if (borrowBtn) {
+                    const bookId = parseInt(borrowBtn.dataset.id);
+                    const book = books.find(b => b.id === bookId);
+                    if (!currentUser) {
+                        alert('Please log in to borrow books!');
+                        return;
+                    }
+                    if (book.availability === 'Available') {
+                        book.availability = 'Borrowed';
+                        book.borrowCount += 1;
+                        const dueDate = new Date();
+                        dueDate.setDate(dueDate.getDate() + 7);
+                        borrowingHistory.push({
+                            bookId: book.id,
+                            title: book.title,
+                            username: currentUser.username,
+                            dueDate: dueDate.toLocaleDateString(),
+                            borrowTimestamp: Date.now()
+                        });
+                        saveData();
+                        populateBookSelect();
+                        displayBooks();
+                        displayHistory();
+                        alert(`Successfully borrowed ${book.title}! Due: ${dueDate.toLocaleDateString()}`);
+                    } else {
+                        alert(`${book.title} is not available for borrowing!`);
+                    }
                 }
-            }, { once: true });
+            });
         }
-
+    
         // Display wishlist with event delegation
         function displayWishlist() {
             const wishlistCatalog = document.getElementById('wishlist-catalog');
@@ -269,7 +311,7 @@
                 const card = `
                     <div class="col">
                         <div class="card book-card">
-                            <img src="${book.coverImage}" class="card-img-top cover-img" alt="${book.title}">
+                            <img src="${book.cover_image}" class="card-img-top cover-img" alt="${book.title}">
                             <div class="card-body">
                                 <h5 class="card-title">${book.title}</h5>
                                 <p class="card-text">Author: ${book.author}</p>
@@ -283,7 +325,7 @@
                 `;
                 wishlistCatalog.innerHTML += card;
             });
-
+    
             // Event delegation for remove wishlist buttons
             wishlistCatalog.addEventListener('click', (e) => {
                 if (e.target.closest('.remove-wishlist-btn')) {
@@ -296,12 +338,12 @@
                 }
             }, { once: true });
         }
-
+    
         // Populate book select dropdown
         function populateBookSelect() {
             const select = document.getElementById('book-select');
             select.innerHTML = '<option value="">Select a book</option>';
-            const availableBooks = books.filter(b => b.status === 'Available');
+            const availableBooks = books.filter(b => b.availability === 'Available');
             if (availableBooks.length === 0) {
                 select.innerHTML += '<option value="" disabled>No available books</option>';
             } else {
@@ -310,25 +352,25 @@
                 });
             }
         }
-
+    
         // Handle borrowing form submission
         document.getElementById('borrow-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const bookId = parseInt(document.getElementById('book-select').value);
             const messageDiv = document.getElementById('borrow-message');
-
+            
             if (!bookId) {
                 messageDiv.innerHTML = '<div class="alert alert-danger">Please select a book!</div>';
                 return;
             }
-
+    
             const book = books.find(b => b.id === bookId);
-            if (book.status !== 'Available') {
+            if (book.availability !== 'Available') {
                 messageDiv.innerHTML = '<div class="alert alert-danger">This book is not available!</div>';
                 return;
             }
-
-            book.status = 'Borrowed';
+    
+            book.availability = 'Borrowed';
             book.borrowCount += 1;
             const dueDate = new Date();
             dueDate.setDate(dueDate.getDate() + 7);
@@ -346,7 +388,7 @@
             messageDiv.innerHTML = `<div class="alert alert-success">Successfully borrowed ${book.title}! Due: ${dueDate.toLocaleDateString()}</div>`;
             e.target.reset();
         });
-
+    
         // Display borrowing history with event delegation
         function displayHistory() {
             const table = document.getElementById('history-table');
@@ -366,7 +408,7 @@
                 `;
                 table.innerHTML += row;
             });
-
+    
             // Event delegation for return buttons
             table.addEventListener('click', (e) => {
                 if (e.target.closest('.return-btn')) {
@@ -374,7 +416,7 @@
                     const bookId = parseInt(btn.dataset.id);
                     const timestamp = parseInt(btn.dataset.timestamp);
                     const book = books.find(b => b.id === bookId);
-                    book.status = 'Available';
+                    book.availability = 'Available';
                     borrowingHistory = borrowingHistory.filter(r => !(r.bookId === bookId && r.username === currentUser.username && r.borrowTimestamp === timestamp));
                     saveData();
                     populateBookSelect();
@@ -384,7 +426,7 @@
                 }
             }, { once: true });
         }
-
+    
         // Display user activities (Librarian)
         function displayActivities() {
             const table = document.getElementById('activity-table');
@@ -400,24 +442,24 @@
                 table.innerHTML += row;
             });
         }
-
+    
         // Update librarian dashboard
         function updateDashboard() {
             const totalBooks = books.length;
-            const totalBorrowed = books.filter(b => b.status === 'Borrowed').length;
+            const totalBorrowed = books.filter(b => b.availability === 'Borrowed').length;
             const totalAvailable = totalBooks - totalBorrowed;
             const mostBorrowed = books.reduce((prev, current) => (prev.borrowCount > current.borrowCount) ? prev : current, { title: 'None', borrowCount: 0 });
-
+    
             document.getElementById('total-books').textContent = totalBooks;
             document.getElementById('total-borrowed').textContent = totalBorrowed;
             document.getElementById('total-available').textContent = totalAvailable;
             document.getElementById('most-borrowed').textContent = mostBorrowed.title;
-
+    
             const genres = {};
             books.forEach(b => {
                 genres[b.genre] = (genres[b.genre] || 0) + 1;
             });
-
+    
             const ctx = document.getElementById('genre-chart').getContext('2d');
             if (genreChart) genreChart.destroy();
             genreChart = new Chart(ctx, {
@@ -438,7 +480,7 @@
                 }
             });
         }
-
+    
         // Export borrowing history as CSV
         document.getElementById('export-csv').addEventListener('click', () => {
             const userHistory = borrowingHistory.filter(h => h.username === currentUser.username);
@@ -458,7 +500,7 @@
             a.click();
             URL.revokeObjectURL(url);
         });
-
+    
         // Reset local storage
         document.getElementById('reset-storage').addEventListener('click', async () => {
             if (confirm('Are you sure you want to reset all data?')) {
@@ -480,7 +522,7 @@
                 alert('Local storage reset successfully!');
             }
         });
-
+    
         // Light/Dark mode toggle with persistence
         function initializeTheme() {
             const isDarkMode = localStorage.getItem('darkMode') === 'true';
@@ -489,7 +531,7 @@
                 document.querySelector('#theme-toggle i').classList.replace('fa-moon', 'fa-sun');
             }
         }
-
+    
         document.getElementById('theme-toggle').addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             const icon = document.querySelector('#theme-toggle i');
@@ -497,12 +539,12 @@
             icon.classList.toggle('fa-sun');
             localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
         });
-
+    
         // Event listeners for search and filters
         document.getElementById('search-input').addEventListener('input', displayBooks);
         document.getElementById('genre-filter').addEventListener('change', displayBooks);
         document.getElementById('availability-filter').addEventListener('change', displayBooks);
-
+    
         // Initialize the app
         async function init() {
             loadStorage();
@@ -511,4 +553,4 @@
             document.getElementById('landing-page').classList.remove('d-none');
         }
         init();
-  
+    });
